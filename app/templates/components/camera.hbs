@@ -2,7 +2,6 @@
   class="js-ember-camera"
   {{did-insert this.onInsert @constraints}}
 >
-  {{this.trackCapabilities}}
   {{yield
     (hash
       viewFinder=(component "camera/view-finder" isStreaming=isStreaming stream=this.stream)

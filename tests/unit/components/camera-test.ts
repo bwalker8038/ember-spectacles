@@ -7,7 +7,7 @@ module('Unit | Component | camera', function(hooks) {
 
   hooks.beforeEach(function() {
     this.getUserMediaStub = sinon.stub();
-    this.getmediaTracksStub = sinon.stub();
+    this.getVideoTracksStub = sinon.stub();
     this.getSettingsStub = sinon.stub();
     this.getCapabilitiesStub = sinon.stub();
     this.stopStub = sinon.stub();
@@ -22,7 +22,7 @@ module('Unit | Component | camera', function(hooks) {
 
     this.mediaDevice = {
       id: "nyiD4WMdtmrXpSA7hV9DKG9gINFHIG701gRP",
-      getmediaTracks: this.getmediaTracksStub
+      getVideoTracks: this.getVideoTracksStub
     };
 
     this.mediaTrack = {
@@ -39,7 +39,7 @@ module('Unit | Component | camera', function(hooks) {
         resolve(this.mediaDevice)
       ));
 
-    this.getmediaTracksStub
+    this.getVideoTracksStub
       .returns([this.mediaTrack]);
 
     this.getSettingsStub
@@ -70,7 +70,7 @@ module('Unit | Component | camera', function(hooks) {
       assert.equal(
         component.stream.id,
         this.mediaDevice.id,
-        'When `openMediaStram` is invoked, `stream` is set'
+        'When `openMediaStream` is invoked, `stream` is set'
       );
 
       assert.equal(

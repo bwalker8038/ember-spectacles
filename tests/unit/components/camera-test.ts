@@ -10,6 +10,7 @@ module('Unit | Component | camera', function(hooks) {
     this.getVideoTracksStub = sinon.stub();
     this.getSettingsStub = sinon.stub();
     this.getCapabilitiesStub = sinon.stub();
+    this.applyConstraintsStub = sinon.stub();
     this.stopStub = sinon.stub();
 
     this.mediaTrackSettings = {
@@ -29,6 +30,7 @@ module('Unit | Component | camera', function(hooks) {
       id: "12331b84-23f0-478a-8963-cd7a00ce5b0d",
       getSettings: this.getSettingsStub,
       getCapabilities: this.getCapabilitiesStub,
+      applyConstraints: this.applyConstraintsStub,
       stop: this.stopStub
     };
 
@@ -156,4 +158,28 @@ module('Unit | Component | camera', function(hooks) {
         'When `updateStreamConstraints` is invoked, it attempts to stop the stream'
       );
   });
+
+  test(
+    '`applyConstraints` invokes correctly',
+    async function(assert) {
+      navigator.mediaDevices.getUserMedia = this.getUserMediaStub;
+
+      const component = this.owner.lookup('component:camera');
+
+      const constraints = {
+        video: { zoom: 2 }
+      } as MediaStreamConstraints
+
+      await component.applyConstraints(
+        this.mediaTrack as MediaStreamTrack,
+        constraints
+      );
+
+      assert.equal(
+        this.applyConstraintsStub.calledOnce,
+        true,
+        'When `applyConstraints` is invoked, `mediaTrack.applyConstraints` is called'
+      );
+  });
+
 });

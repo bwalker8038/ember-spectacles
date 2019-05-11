@@ -1,0 +1,11 @@
+{{#if this.zoomCapabilities}}
+  <input
+    class="js-zoom-slider"
+    type="range"
+    min={{this.zoomCapabilities.min}}
+    max={{this.zoomCapabilities.max}}
+    step={{this.zoomCapabilities.step}}
+    value={{this.zoomSetting}}
+    oninput={{action this.applyZoom value="target.value" }}
+  >
+{{/if}}

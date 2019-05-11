@@ -110,6 +110,17 @@ export default class Camera extends Component {
     }
   }
 
+  public async applyConstraints(
+    mediaTrack: MediaStreamTrack,
+    newConstriants: MediaTrackConstraints
+  ) {
+    try {
+      await mediaTrack.applyConstraints(newConstriants);
+    } catch (error) {
+     debug(error) ;
+    }
+  }
+
   /**
    * Action set's up the media stream. This is fired after the component has been
    * inserted.

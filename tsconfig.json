@@ -20,6 +20,7 @@
     "inlineSources": true,
     "baseUrl": ".",
     "module": "es6",
+    "lib": ["dom"],
     "paths": {
       "ember-spectacles/tests/*": [
         "tests/*"

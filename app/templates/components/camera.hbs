@@ -5,6 +5,11 @@
   {{yield
     (hash
       viewFinder=(component "camera/view-finder" isStreaming=isStreaming stream=this.stream)
+      zoomSlider=(component "camera/zoom-slider"
+        trackSettings=this.trackSettings
+        trackCapabilities=this.trackCapabilities
+        applyConstraints=(action this.applyConstraints this.mediaTrack)
+      )
     )
   }}
 </div>

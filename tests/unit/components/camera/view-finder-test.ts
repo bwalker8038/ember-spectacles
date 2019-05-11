@@ -8,11 +8,14 @@ module('Unit | Component | camera/view-finder', function(hooks) {
   hooks.beforeEach(function() {
     this.playStub = sinon.stub();
     this.videoEl = document.createElement('video');
+    this.clock = sinon.useFakeTimers();
+
 
     this.videoEl.play = this.playStub;
   });
 
   hooks.afterEach(function () {
+    this.clock.restore();
     sinon.reset();
   });
 
@@ -28,6 +31,8 @@ module('Unit | Component | camera/view-finder', function(hooks) {
         true,
         '`onInsert` attempts to call `play` on the passed video element'
       );
+
+      this.clock.tick(101);
 
       assert.equal(
         component.isStreaming,

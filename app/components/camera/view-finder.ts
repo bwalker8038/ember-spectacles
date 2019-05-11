@@ -1,9 +1,13 @@
 import Component from '@ember/component';
 import { debug } from '@ember/debug';
 import { action } from '@ember/object';
+import { run } from '@ember/runloop';
 
+/**
+ * Component defines the camera's "view-finder" as a `HTMLVideoElement`
+ */
 export default class CameraViewFinder extends Component {
-  public tagName = ''
+  public tagName = '';
 
   /**
    * The `MediaStream` for the current device
@@ -30,7 +34,8 @@ export default class CameraViewFinder extends Component {
   ) {
     try {
       await element.play();
-      this.set('isStreaming', true);
+      // set the stream after 100ms because of this bug: https://crbug.com/711524
+      run.later(() => this.set('isStreaming', true), 100);
     } catch (error) {
       debug(error);
     }

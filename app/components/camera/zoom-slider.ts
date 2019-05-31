@@ -38,7 +38,6 @@ export default class CameraZoomSlider extends Component {
       return undefined;
     }
 
-    console.log(this.trackCapabilities);
     return this.trackCapabilities.zoom;
   }
 
@@ -50,7 +49,7 @@ export default class CameraZoomSlider extends Component {
     if (!this.trackSettings) {
       return undefined;
     }
-    console.log('settings', this.trackSettings);
+
     return this.trackSettings.zoom;
   }
 

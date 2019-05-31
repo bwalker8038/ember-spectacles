@@ -17,6 +17,7 @@ import { debug } from '@ember/debug';
  */
 export default class Camera extends Component {
   public tagName = '';
+
   /**
    * The `MediaStream` for the current device
    */
@@ -32,13 +33,36 @@ export default class Camera extends Component {
    */
   public constraints?: MediaStreamConstraints;
 
+
   /**
    * Boolean flag that determines if the `ViewFinder` has begun it's stream
    * this flag is needed due to this bug in chrome: https://crbug.com/711524
    */
   public isStreaming = false;
 
+  /**
+   * List containing the available media devices
+   */
+   public devices?: MediaDeviceInfo[];
 
+  @computed('devices')
+  public get cameras() {
+    if (!this.devices) {
+      return undefined;
+    }
+
+    return this.devices!
+      .reduce((
+        acc: MediaDeviceInfo[],
+        device: MediaDeviceInfo
+      ) => {
+        if (device.kind === 'videoinput') {
+          acc.push(device);
+        }
+
+        return acc;
+    }, []) as MediaDeviceInfo[];
+  }
   /**
    * Settings bag that contains the media device's settings
    */
@@ -48,6 +72,7 @@ export default class Camera extends Component {
       return undefined;
     }
 
+    console.log(this.mediaTrack!.getSettings());
     return this.mediaTrack!.getSettings();
   }
 
@@ -61,8 +86,10 @@ export default class Camera extends Component {
       return undefined;
     }
 
+    console.log('cap', this.mediaTrack!.getCapabilities());
     return this.mediaTrack!.getCapabilities();
   }
+
 
   /**
    * Get's a media media stream from a user's device and sets the internal
@@ -79,10 +106,11 @@ export default class Camera extends Component {
     try {
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
       const [mediaTrack] = stream.getVideoTracks();
+      const devices = await navigator.mediaDevices.enumerateDevices();
 
-      this.setProperties({ stream, mediaTrack });
+      this.setProperties({ stream, mediaTrack, devices });
     } catch (err) {
-      console.log(`Error!: ${err}`);
+      debug(err);
     }
   }
 
@@ -110,6 +138,12 @@ export default class Camera extends Component {
     }
   }
 
+  /**
+   *
+   * @param {MediaStreamTrack} mediaTrack - the current mediaTrack
+   * @param {MediaTrackConstraints} newConstriants - the new set of constraints to
+   * be applied to the passed mediaTrack
+   */
   public async applyConstraints(
     mediaTrack: MediaStreamTrack,
     newConstriants: MediaTrackConstraints

@@ -4,7 +4,15 @@
 >
   {{yield
     (hash
-      viewFinder=(component "camera/view-finder" isStreaming=isStreaming stream=this.stream)
+      viewFinder=(component "camera/view-finder"
+        isStreaming=this.isStreaming
+        stream=this.stream
+      )
+      sensorToggle=(component "camera/sensor-toggle"
+        sensors=this.cameras
+        trackSettings=this.trackSettings
+        updateStreamConstraints=(action this.updateStreamConstraints this.mediaTrack)
+      )
       zoomSlider=(component "camera/zoom-slider"
         trackSettings=this.trackSettings
         trackCapabilities=this.trackCapabilities

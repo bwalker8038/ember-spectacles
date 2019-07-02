@@ -1,6 +1,9 @@
-<button
-  class="js-toggle-sensor"
-  onclick={{action this.toggleSensor}}
- >
-  {{yield}}
-</button>
+{{#if this.showToggle}}
+  <button
+    class="js-toggle-sensor"
+    onclick={{action this.toggleSensor}}
+    {{didInsert this.onInsert this.sensors}}
+  >
+    {{yield}}
+  </button>
+{{/if}}

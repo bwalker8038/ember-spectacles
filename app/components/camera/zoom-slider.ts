@@ -1,7 +1,8 @@
 import Component from '@ember/component';
-import { computed, action } from '@ember/object';
+import { action } from '@ember/object';
 import { debug } from '@ember/debug';
 import { tryInvoke } from '@ember/utils';
+import { reads } from '@ember/object/computed';
 
 /**
  * Component defines the zoom slider control
@@ -31,27 +32,17 @@ export default class CameraZoomSlider extends Component {
 
   /**
    * Getter that exposed the `zoom` object from the capabilities bag
+   * TODO: Fix the type here
    */
-  @computed('trackCapabilities')
-  public get zoomCapabilities() {
-    if (!this.trackCapabilities) {
-      return undefined;
-    }
-
-    return this.trackCapabilities.zoom;
-  }
+  @reads('trackCapabilities.zoom')
+  public zoomCapabilities: any;
 
   /**
    * Getter that exposes the  current `zoom` value from the currently playing track
+   * TODO: Fix the type here
    */
-  @computed('trackSettings')
-  public get zoomSetting() {
-    if (!this.trackSettings) {
-      return undefined;
-    }
-
-    return this.trackSettings.zoom;
-  }
+  @reads('trackSettings.zoom')
+  public zoomSetting?: any;
 
   /**
    * Action applies the selected zoom level against the current

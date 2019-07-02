@@ -72,7 +72,6 @@ export default class Camera extends Component {
       return undefined;
     }
 
-    console.log(this.mediaTrack!.getSettings());
     return this.mediaTrack!.getSettings();
   }
 
@@ -86,7 +85,6 @@ export default class Camera extends Component {
       return undefined;
     }
 
-    console.log('cap', this.mediaTrack!.getCapabilities());
     return this.mediaTrack!.getCapabilities();
   }
 

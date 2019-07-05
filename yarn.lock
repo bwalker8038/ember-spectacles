@@ -1104,6 +1104,18 @@
   resolved "https://registry.yarnpkg.com/@types/sizzle/-/sizzle-2.3.2.tgz#a811b8c18e2babab7d542b3365887ae2e4d9de47"
   integrity sha512-7EJYyKTL7tFR8+gDbB6Wwz/arpGa0Mywk1TJbNzKzHtzbwVmY4HR9WqS5VV7dsBUKQmPNr192jHr/VpBluj/hg==
 
+"@types/w3c-image-capture@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/w3c-image-capture/-/w3c-image-capture-1.0.2.tgz#d80c3db69eacce7de0a7f580d9c7fbed0aabdffa"
+  integrity sha512-r3OpASHP8NtO0WVc+YHZQks1qupfpx7wI7SFiVIsvuzmIQIv1K86wUG5w6o2zY2GN2QvjEGIF4eXBpOJa9dj6A==
+  dependencies:
+    "@types/webrtc" "*"
+
+"@types/webrtc@*":
+  version "0.0.25"
+  resolved "https://registry.yarnpkg.com/@types/webrtc/-/webrtc-0.0.25.tgz#bd2b4e7b4c13250b3d58439623f2b9adfd7dee9e"
+  integrity sha512-ep/e+p2uUKV1h96GBgRhwomrBch/bPDHPOKbCHODLGRUDuuKe2s7sErlFVKw+5BYUzvpxSmUNqoadaZ44MePoQ==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"

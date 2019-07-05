@@ -29,6 +29,7 @@
     "@types/qunit": "^2.9.0",
     "@types/rsvp": "^4.0.2",
     "@types/sinon": "^7.0.11",
+    "@types/w3c-image-capture": "^1.0.2",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^5.0.0",
     "ember-cli": "~3.9.0",

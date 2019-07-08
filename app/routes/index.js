@@ -7,5 +7,10 @@ export default Route.extend({
     return {
       constraints
     }
+  },
+
+  actions: {
+    captureImage() {
+    }
   }
 });

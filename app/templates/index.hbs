@@ -4,8 +4,8 @@
   <c.viewFinder />
   <c.zoomSlider />
   <c.sensorToggle>Toggle Camera</c.sensorToggle>
-  <c.shutter @captureImage={{this.captureImage}}>
-    {{Take Picture}}
+  <c.shutter @onCaptureImage={{route-action "captureImage"}}>
+    <span>Take Photo</span>
   </c.shutter>
 </Camera>
 {{outlet}}

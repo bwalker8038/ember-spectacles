@@ -1,7 +1,8 @@
 import Component from '@ember/component';
 import { action } from '@ember/object';
 import { tryInvoke } from '@ember/utils';
-import { debug } from 'util';
+import { debug } from '@ember/debug';
+import 'image-capture';
 
 /**
  * Component defines the shutter button that captures an image  from the
